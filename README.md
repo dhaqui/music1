@@ -9,3 +9,8 @@
 3. `render.yaml` が読み込まれたら、そのまま作成します。
 
 静的サイトなので、ビルドコマンドは不要です。
+
+Web Serviceとして作る場合は、以下を指定します。
+
+- Build Command: `npm install`
+- Start Command: `npm start`
