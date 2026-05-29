@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>礼儀正しく壊れていきます</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <section class="lyrics-panel" aria-label="lyrics">
+        <div class="title-row">
+          <div>
+            <p class="kicker">Swing jazz blues ・ genre storm ・ 128 BPM</p>
+            <h1>礼儀正しく壊れていきます</h1>
+          </div>
+          <button id="playButton" class="play-button" type="button" aria-label="再生">
+            <span class="play-icon">▶</span>
+            <span id="playLabel">再生</span>
+          </button>
+        </div>
+        <div id="lyrics" class="lyrics"></div>
+      </section>
+
+      <section class="music-panel" aria-label="midi visualizer">
+        <div class="meter">
+          <span id="timeNow">0:00</span>
+          <div class="progress-shell">
+            <div id="progress" class="progress"></div>
+          </div>
+          <span id="timeTotal">0:00</span>
+        </div>
+        <div class="stage">
+          <canvas id="visualizer" width="900" height="540"></canvas>
+          <div class="playhead"></div>
+          <div class="stage-label">Groove stream</div>
+        </div>
+        <div class="legend">
+          <span><i class="dot bass"></i>Walking bass</span>
+          <span><i class="dot drums"></i>Drums</span>
+          <span><i class="dot organ"></i>Organ</span>
+          <span><i class="dot horn"></i>Horns</span>
+          <span><i class="dot guitar"></i>Guitar</span>
+          <span><i class="dot vocal"></i>Vocal</span>
+          <span><i class="dot latin"></i>Latin hits</span>
+        </div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
