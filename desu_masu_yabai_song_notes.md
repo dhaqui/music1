@@ -2,16 +2,17 @@
 
 ## 基本
 
-- Tempo: 128 BPM
-- Meter: 4/4 swing
-- Key: C blues
-- Feel: ジャズブルースを土台に、ファンク、ラテン、ロック、壊れた儀式が混ざって怒涛
-- Main instruments: walking bass, drums, organ, horns, guitar, vocal guide, latin hits
+- Tempo: 172 BPM
+- Meter: 4/4 broken swing
+- Key: C minor / altered jazz cycle
+- Feel: ジャズの濁った和音を土台に、ブレイクビーツ、UKガラージ、ファンク、ラテン、ロックの速い切り込みが混ざって怒涛
+- Main instruments: subby syncopated bass, break drums, organ stabs, horns, dirty guitar, vocal guide, latin hits
 
 ## 新アレンジ
 
-12小節ブルースを周回しながら、後半ほど楽器と音域が増える構成。
-ベースはウォーキングで唸り、ドラムはスウィング気味、オルガンは裏拍で刺し、ホーンとギターが後半で暴れる。
+16小節のジャズ進行を周回しながら、後半ほど楽器と音域が増える構成。
+ベースはウォーキングではなく、シンコペーション強めの唸るベースライン。
+ドラムは高速ブレイクビーツ寄り、オルガンは裏拍で刺し、ホーンとギターが後半で暴れる。
 ブラウザ版では、このグルーブに合わせて音符の帯も揺れる。
 
 ## 構成
