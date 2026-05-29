@@ -1,7 +1,7 @@
-const bpm = 172;
+const bpm = 156;
 const beat = 60 / bpm;
 const barSec = beat * 4;
-const swing = 0.58;
+const swing = 0.61;
 
 const lyricsText = `夜分に失礼します。
 
@@ -212,23 +212,22 @@ const lyricsText = `夜分に失礼します。
 
 const chords = {
   Cm9: { root: 36, tones: [48, 51, 55, 58, 62, 67] },
-  F13: { root: 41, tones: [53, 57, 60, 63, 67, 74] },
-  Bb13: { root: 46, tones: [58, 62, 65, 68, 72, 79] },
-  EbMaj9: { root: 39, tones: [51, 55, 58, 62, 65, 70] },
-  Ab13: { root: 44, tones: [56, 60, 63, 66, 70, 77] },
-  Db9: { root: 37, tones: [49, 53, 56, 59, 63, 68] },
+  AbMaj9: { root: 32, tones: [44, 48, 51, 55, 58, 63] },
+  Eb6: { root: 39, tones: [51, 55, 58, 60, 65, 70] },
+  BbAdd: { root: 34, tones: [46, 50, 53, 58, 60, 65] },
+  Fm11: { root: 41, tones: [53, 56, 60, 63, 67, 70] },
+  DbMaj7: { root: 37, tones: [49, 53, 56, 60, 65, 68] },
   GAlt: { root: 43, tones: [55, 59, 62, 65, 68, 73] },
-  CSharp9: { root: 36, tones: [48, 52, 58, 63, 66, 70] },
-  Fm9: { root: 41, tones: [53, 56, 60, 63, 67, 72] },
-  AAlt: { root: 45, tones: [57, 61, 64, 68, 70, 75] },
+  COpen: { root: 36, tones: [48, 55, 60, 62, 67, 74] },
+  AFlatGhost: { root: 44, tones: [56, 60, 63, 67, 70, 75] },
   DHalf: { root: 38, tones: [50, 53, 56, 60, 65] }
 };
 
 const genreCycle = [
-  "Cm9", "F13", "Bb13", "EbMaj9",
-  "Ab13", "Db9", "GAlt", "CSharp9",
-  "Fm9", "Bb13", "EbMaj9", "AAlt",
-  "DHalf", "GAlt", "Cm9", "GAlt"
+  "Cm9", "AbMaj9", "Eb6", "BbAdd",
+  "Fm11", "DbMaj7", "GAlt", "COpen",
+  "Cm9", "AFlatGhost", "Eb6", "BbAdd",
+  "DHalf", "GAlt", "AbMaj9", "COpen"
 ];
 
 function midiToFreq(note) {
@@ -239,13 +238,13 @@ function buildNotes() {
   const notes = [];
   const cycles = 9;
   const bassCells = [
-    [0, 3, 6, 7, 10, 12, 10, 7],
-    [0, 0, 7, 10, 12, 15, 12, 10],
-    [0, 6, 7, 10, 13, 12, 7, 6],
-    [0, 3, 5, 6, 10, 7, 6, -2]
+    [0, 7, 10, 12, 10, 7, 3, -2],
+    [0, 0, 5, 7, 12, 10, 7, 5],
+    [0, 3, 7, 10, 12, 15, 12, 7],
+    [0, -2, 3, 7, 10, 7, 5, 3]
   ];
-  const topline = [72, 75, 77, 78, 82, 80, 77, 75, 72, 70, 72, 75, 77, 84, 82, 80];
-  const hornShape = [0, 3, 7, 10, 14, 17, 15, 10];
+  const topline = [72, 75, 79, 77, 75, 72, 70, 67, 70, 72, 75, 82, 80, 77, 75, 72];
+  const hornShape = [0, 7, 10, 14, 12, 10, 7, 3];
   const at = (bar, sixteenth) => {
     const step = beat / 4;
     const off = sixteenth % 4 === 1 || sixteenth % 4 === 3 ? step * (swing - 0.5) : 0;
@@ -261,42 +260,42 @@ function buildNotes() {
       const heat = 0.7 + cycle * 0.045;
       const cell = bassCells[(bar + cycle) % bassCells.length];
 
-      [0, 3, 6, 7, 10, 13].forEach((slot, i) => {
+      [0, 4, 7, 10, 12, 15].forEach((slot, i) => {
         const pitch = chord.root + cell[i % cell.length];
-        notes.push({ t: at(songBar, slot), d: beat * 0.38, pitch, part: "bass", velocity: 0.78 + heat * 0.14, wobble: 26 + cycle * 3 });
+        notes.push({ t: at(songBar, slot), d: beat * 0.42, pitch, part: "bass", velocity: 0.66 + heat * 0.12, wobble: 18 + cycle * 2 });
       });
-      notes.push({ t: at(songBar, 15), d: beat * 0.22, pitch: nextChord.root - 1, part: "bass", velocity: 0.82, wobble: 35 });
+      notes.push({ t: at(songBar, 15), d: beat * 0.22, pitch: nextChord.root - 1, part: "bass", velocity: 0.72, wobble: 24 });
 
-      [0, 6, 11].forEach((slot) => notes.push({ t: at(songBar, slot), d: 0.055, pitch: 35, part: "drums", velocity: 0.95, drum: "kick" }));
-      [4, 12].forEach((slot) => notes.push({ t: at(songBar, slot), d: 0.08, pitch: 38, part: "drums", velocity: 0.92, drum: "snare" }));
-      [2, 5, 8, 14].forEach((slot) => notes.push({ t: at(songBar, slot), d: 0.045, pitch: 42, part: "drums", velocity: 0.58 + heat * 0.12, drum: "hat" }));
+      [0, 7, 11].forEach((slot) => notes.push({ t: at(songBar, slot), d: 0.055, pitch: 35, part: "drums", velocity: 0.78, drum: "kick" }));
+      [4, 12].forEach((slot) => notes.push({ t: at(songBar, slot), d: 0.08, pitch: 38, part: "drums", velocity: 0.76, drum: "snare" }));
+      [1, 3, 6, 8, 10, 14].forEach((slot) => notes.push({ t: at(songBar, slot), d: 0.045, pitch: 42, part: "drums", velocity: 0.34 + heat * 0.08, drum: "hat" }));
       for (let s = 0; s < 16; s += 2) {
-        notes.push({ t: at(songBar, s), d: 0.035, pitch: 70, part: "drums", velocity: s % 4 === 0 ? 0.42 : 0.28, drum: "hat" });
+        notes.push({ t: at(songBar, s), d: 0.032, pitch: 70, part: "latin", velocity: s % 4 === 0 ? 0.22 : 0.16, drum: "clave" });
       }
       if ((bar + cycle) % 4 === 3) {
         notes.push({ t: at(songBar, 15), d: 0.23, pitch: 42, part: "drums", velocity: 0.82, drum: "crash" });
       }
 
-      [3, 7, 10, 15].forEach((slot, i) => {
+      [2, 6, 9, 14].forEach((slot, i) => {
         const pitch = chord.tones[(i + cycle) % chord.tones.length] + 12 + lift;
-        notes.push({ t: at(songBar, slot), d: beat * 0.34, pitch, part: "organ", velocity: 0.5 + heat * 0.12, wobble: 12 });
+        notes.push({ t: at(songBar, slot), d: beat * 0.52, pitch, part: "organ", velocity: 0.36 + heat * 0.09, wobble: 8 });
       });
 
-      [1, 4.5, 7.5, 11.5, 14].forEach((slot, i) => {
+      [0.5, 4.5, 8.5, 13.5].forEach((slot, i) => {
         const pitch = chord.tones[(i + 2) % chord.tones.length] + 24 + (cycle > 6 ? 7 : 0);
-        notes.push({ t: at(songBar, Math.floor(slot)) + (slot % 1) * beat / 4, d: beat * 0.28, pitch, part: "guitar", velocity: 0.5 + heat * 0.16, wobble: 34 });
+        notes.push({ t: at(songBar, Math.floor(slot)) + (slot % 1) * beat / 4, d: beat * 0.62, pitch, part: "guitar", velocity: 0.28 + heat * 0.08, wobble: 18 });
       });
 
-      if (cycle > 0 && (bar % 2 === 0 || cycle > 5)) {
-        [0, 5, 10].forEach((slot, i) => {
+      if (cycle > 1 && (bar % 4 === 0 || cycle > 5)) {
+        [0, 6, 11].forEach((slot, i) => {
           const pitch = chord.root + 36 + hornShape[(bar + i + cycle) % hornShape.length] + (cycle > 6 ? 7 : 0);
-          notes.push({ t: at(songBar, slot), d: beat * 0.42, pitch, part: "horn", velocity: 0.62 + heat * 0.18, wobble: 18 });
+          notes.push({ t: at(songBar, slot), d: beat * 0.36, pitch, part: "horn", velocity: 0.46 + heat * 0.12, wobble: 12 });
         });
       }
 
       if (cycle > 2) {
         [3, 6, 9, 12, 15].forEach((slot, i) => {
-          notes.push({ t: at(songBar, slot), d: 0.048, pitch: 76 + ((i + bar) % 5), part: "latin", velocity: 0.58 + heat * 0.12, drum: "clave" });
+          notes.push({ t: at(songBar, slot), d: 0.048, pitch: 76 + ((i + bar) % 5), part: "latin", velocity: 0.36 + heat * 0.08, drum: "clave" });
         });
       }
 

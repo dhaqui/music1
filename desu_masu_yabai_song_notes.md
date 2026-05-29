@@ -1,11 +1,11 @@
-# 「礼儀正しく壊れていきます」作曲メモ
+# 「雨に撃たえば...! disc 2」作曲メモ
 
 ## 基本
 
-- Tempo: 172 BPM
+- Tempo: 156 BPM
 - Meter: 4/4 broken swing
 - Key: C minor / altered jazz cycle
-- Feel: ジャズの濁った和音を土台に、ブレイクビーツ、UKガラージ、ファンク、ラテン、ロックの速い切り込みが混ざって怒涛
+- Feel: 雨の中で独白しているような親密さを土台に、ブレイクビーツ、フォーク、ガラージ、電子音が混ざって高揚する
 - Main instruments: subby syncopated bass, break drums, organ stabs, horns, dirty guitar, vocal guide, latin hits
 
 ## 新アレンジ
